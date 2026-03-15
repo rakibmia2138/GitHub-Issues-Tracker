@@ -1,4 +1,7 @@
 const allIssues = document.getElementById("allIssues");
+
+
+
 function login() {
   const userName = document.getElementById("userName");
   const password = document.getElementById("password");
@@ -17,27 +20,41 @@ function loadIssues() {
 function displayIssues(data) {
   allIssues.innerHTML = "";
   data.forEach((element) => {
+    const labelButtons = element.labels
+      .map(
+        (label) =>
+          `<span class="badge badge-outline text-sm py-1 px-2 flex items-center justify-center">${label}</span>`
+      )
+      .join("");
     const div = document.createElement("div");
-    div.classList = "card bg-base-100 w-96 shadow-sm";
+    // div.classList = "card bg-base-100 w-96 shadow-sm";
     div.innerHTML = `
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">Card Title</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
+        <div onclick="my_modal_1.showModal()" class="card bg-base-100 flex flex-col w-96 h-full shadow-sm p-4 space-y-4 border-t-4 ${element.status === "closed" ? "border-t-purple-700" : "border-t-green-700"} ">
+          <div class="flex justify-between">
+            ${element.status === "closed" ? `<img src="./assets/Closed- Status .png" alt="" />` : `<img src="./assets/Open-Status.png" />`}
+            <button class="btn rounded-full">${element.priority.toUpperCase()}</button>
+          </div>
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold">
+              ${element.title}
+            </h2>
+          </div>
+          <div>
+            <p class="text-gray-400 line-clamp-2">
+              ${element.description}
+            </p>
+          </div>
+          <div class="flex gap-2 mt-2">
+              ${labelButtons}
+          </div>
+          <hr class="text-gray-300 mt-auto" />
+          <div class="text-gray-400 space-y-4">
+            <p>#1 by ${element.author}</p>
+            <p>${element.createdAt}</p>
           </div>
         </div>
       `;
-      allIssues.append(div);
+    allIssues.append(div);
   });
 }
-loadIssues();
+// loadIssues();
