@@ -59,9 +59,13 @@
 
     <section class="container mx-auto">
       <div class="bg-slate-100 rounded-xl space-x-3 shadow-xl p-4">
-        <button id="allTab" class="btn btn-primary" onclick="loadIssues()">All</button>
+        <button id="allTab" class="btn btn-primary" onclick="loadIssues()">
+          All
+        </button>
         <button id="openTab" class="btn" onclick="showOpen()">Open</button>
-        <button id="closedTab" class="btn" onclick="showClosed()">Closed</button>
+        <button id="closedTab" class="btn" onclick="showClosed()">
+          Closed
+        </button>
       </div>
     </section>
 
@@ -72,7 +76,7 @@
         <div class="flex items-center gap-2">
           <img src="./assets/Aperture.png" alt="" />
           <div>
-            <h2 class="text-xl font-bold"> <span id="length">0</span> Issues</h2>
+            <h2 class="text-xl font-bold"><span id="length">0</span> Issues</h2>
             <p class="text-gray-400">Track and manage your project issues</p>
           </div>
         </div>
@@ -88,25 +92,13 @@
         </div>
       </div>
     </section>
-    
 
     <section class="container mx-auto">
       <div id="allIssues" class="grid grid-cols-4 gap-8"></div>
 
-
       <!-- Open the modal using ID.showModal() method -->
-      <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
-      <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">
-          <h3 class="text-lg font-bold">Hello!</h3>
-          <p class="py-4">Press ESC key or click the button below to close</p>
-          <div class="modal-action">
-            <form method="dialog">
-              <!-- if there is a button in form, it will close the modal -->
-              <button class="btn">Close</button>
-            </form>
-          </div>
-        </div>
+      <dialog id="my_modal" class="modal">
+        
       </dialog>
     </section>
 
