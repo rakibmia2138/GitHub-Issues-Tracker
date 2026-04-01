@@ -1,5 +1,6 @@
 const allIssues = document.getElementById("allIssues");
 const loadingSpinner = document.getElementById("loadingSpinner");
+let allData = [];
 
 
 function login() {
@@ -22,9 +23,15 @@ function login() {
 
 function loadIssues() {
   showLoading();
+  setActiveTab("all");
+  
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
-    .then((data) => displayIssues(data.data));
+    .then((data) => 
+      {
+        allData = data.data;
+        displayIssues(allData);
+      });
 }
 function displayIssues(data) {
   const allIssuesLength = data.length;
@@ -67,5 +74,25 @@ function displayIssues(data) {
       `;
     allIssues.append(div);
   });
+}
+
+function showOpen(){
+  const openIssues = allData.filter(issue => issue.status === "open");
+  displayIssues(openIssues);
+  setActiveTab("open");
+}
+
+function showClosed(){
+  const closedIssues = allData.filter(issue => issue.status === "closed");
+  displayIssues(closedIssues);
+  setActiveTab("closed");
+}
+
+function setActiveTab(tab){
+  document.getElementById("allTab").classList.remove("btn-primary");
+  document.getElementById("openTab").classList.remove("btn-primary");
+  document.getElementById("closedTab").classList.remove("btn-primary");
+
+  document.getElementById(tab + "Tab").classList.add("btn-primary");
 }
 loadIssues();

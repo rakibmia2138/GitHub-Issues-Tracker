@@ -59,9 +59,9 @@
 
     <section class="container mx-auto">
       <div class="bg-slate-100 rounded-xl space-x-3 shadow-xl p-4">
-        <button class="btn btn-primary" onclick="loadIssues()">All</button>
-        <button class="btn btn-soft">Open</button>
-        <button class="btn btn-soft">Closed</button>
+        <button id="allTab" class="btn btn-primary" onclick="loadIssues()">All</button>
+        <button id="openTab" class="btn" onclick="showOpen()">Open</button>
+        <button id="closedTab" class="btn" onclick="showClosed()">Closed</button>
       </div>
     </section>
 
