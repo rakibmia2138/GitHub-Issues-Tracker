@@ -1,5 +1,5 @@
 const allIssues = document.getElementById("allIssues");
-
+const loadingSpinner = document.getElementById("loadingSpinner");
 
 
 function login() {
@@ -12,18 +12,29 @@ function login() {
   }
 }
 
+  function showLoading() {
+  allIssues.innerHTML = `
+    <div class="col-span-4 flex justify-center">
+      <span class="loading loading-spinner loading-lg"></span>
+    </div>
+  `;
+}
+
 function loadIssues() {
+  showLoading();
   fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
     .then((res) => res.json())
     .then((data) => displayIssues(data.data));
 }
 function displayIssues(data) {
+  const allIssuesLength = data.length;
+  document.getElementById('length').innerText = allIssuesLength;
   allIssues.innerHTML = "";
   data.forEach((element) => {
     const labelButtons = element.labels
       .map(
         (label) =>
-          `<span class="badge badge-outline text-sm py-1 px-2 flex items-center justify-center">${label}</span>`
+          `<span class="badge badge-success badge-outline text-sm py-1 px-2 flex items-center justify-center">${label}</span>`
       )
       .join("");
     const div = document.createElement("div");
@@ -57,4 +68,4 @@ function displayIssues(data) {
     allIssues.append(div);
   });
 }
-// loadIssues();
+loadIssues();
