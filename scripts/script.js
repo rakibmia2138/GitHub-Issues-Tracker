@@ -145,4 +145,13 @@ function showModal(issue) {
 
   modal.showModal();
 }
+
+function searchIssues(){
+  const searchText = document.getElementById("searchInput").value;
+  // console.log(searchText);
+  fetch(` https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`)
+  .then(res => res.json())
+  .then(data => displayIssues(data.data));
+}
+
 loadIssues();
