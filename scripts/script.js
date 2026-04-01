@@ -45,7 +45,7 @@ function displayIssues(data) {
     const div = document.createElement("div");
     // div.classList = "card bg-base-100 w-96 shadow-sm";
     div.innerHTML = `
-        <div onclick="loadSingleIssue(${element.id})" class="card bg-base-100 flex flex-col w-96 h-full shadow-sm p-4 space-y-4 border-t-4 ${element.status === "closed" ? "border-t-purple-700" : "border-t-green-700"} ">
+        <div onclick="loadSingleIssue(${element.id})" class="card bg-base-100 flex flex-col h-full shadow-sm p-4 space-y-4 border-t-4 ${element.status === "closed" ? "border-t-purple-700" : "border-t-green-700"} ">
           <div class="flex justify-between">
             ${element.status === "closed" ? `<img src="./assets/Closed- Status .png" alt="" />` : `<img src="./assets/Open-Status.png" />`}
             <button class="btn rounded-full">${element.priority.toUpperCase()}</button>
